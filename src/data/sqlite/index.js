@@ -17,8 +17,10 @@ module.exports = function (configuration) {
     configuration = configuration || {};
 
     var connection = connections(configuration),
-        serialize = serializeModule(connection),
-        schema = schemaModule(connection),
+        serialize = serializeModule(connection);
+    connection.serialize = serialize;
+
+    var schema = schemaModule(connection),
         columns = columnsModule(connection);
 
     var tableAccess = function (table) {

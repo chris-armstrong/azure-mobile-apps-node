@@ -1,13 +1,12 @@
 // ----------------------------------------------------------------------------
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // ----------------------------------------------------------------------------
-var serializeModule = require('./serialize'),
-    promises = require('../../utilities/promises'),
+var promises = require('../../utilities/promises'),
     schemaModule = require('./schema'),
     errorTypes = require('./errorTypes');
 
 module.exports = function (connection, table) {
-    var serialize = serializeModule(connection),
+    var serialize = connection.serialize,
         schema = schemaModule(connection);
     
     var api = {

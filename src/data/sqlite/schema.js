@@ -4,12 +4,12 @@
 module.exports = function (connection) {
     // these require statements must appear within this function to avoid circular reference issues between dynamicSchema and schema
     var statements = require('./statements'),
-        serialize = require('./serialize')(connection),
         dynamicSchema = require('./dynamicSchema'),
         columns = require('./columns')(connection),
         promises = require('../../utilities/promises'),
         log = require('../../logger');
-
+    var serialize = connection.serialize;
+    
     var api = {
         initialize: function (table) {
             return columns.for(table)
